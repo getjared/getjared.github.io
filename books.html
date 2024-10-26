@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>/text/res</title>
+    <link rel="stylesheet" href="s.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@master/patched-fonts/VictorMono/Regular/complete/Victor%20Mono%20Regular%20Nerd%20Font%20Complete.ttf">
+</head>
+<body class="dark">
+    <button onclick="document.documentElement.classList.toggle('dark'); document.body.classList.toggle('dark')" class="theme-toggle">toggle theme</button>
+
+    <nav>
+        <a href="index.html">home</a>
+        <a href="books.html">books</a>
+        <a href="https://github.com/getjared">github</a>
+    </nav>
+
+    <div class="about-section">
+        <h1>my books</h1>
+        <div class="book-list">
+            <div class="book">
+                <h2>suckless c</h2>
+                <p>modern c from a minimalist perspective. focuses on writing clean, efficient code without unnecessary abstractions.</p>
+                <a href="#">read online</a> • <span class="wip">work in progress</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-section">
+        <h1>recommended reading</h1>
+        <div class="book-category">
+            <h2>c programming</h2>
+            <ul>
+                <li><span class="book-title">the c programming language</span> - kernighan & ritchie</li>
+                <li><span class="book-title">modern c</span> - jens gustedt</li>
+                <li><span class="book-title">21st century c</span> - ben klemens</li>
+                <li><span class="book-title">pointers on c</span> - kenneth reek</li>
+            </ul>
+        </div>
+
+        <div class="book-category">
+            <h2>c++ essentials</h2>
+            <ul>
+                <li><span class="book-title">a tour of c++</span> - bjarne stroustrup</li>
+                <li><span class="book-title">effective modern c++</span> - scott meyers</li>
+                <li><span class="book-title">c++ templates</span> - vandevoorde & josuttis</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="about-section">
+        <h1>online resources</h1>
+        <ul>
+            <li><a href="https://en.cppreference.com/">cppreference</a> - comprehensive c/c++ documentation</li>
+            <li><a href="https://modern-cpp.com/">modern c++</a> - features and best practices</li>
+            <li><a href="https://isocpp.github.io/CppCoreGuidelines/">c++ core guidelines</a> - isocpp official guidelines</li>
+            <li><a href="https://modernc.gforge.inria.fr/">modern c</a> - free online book</li>
+        </ul>
+    </div>
+
+    <footer>built with html and css only. no bloat.</footer>
+</body>
+</html>
