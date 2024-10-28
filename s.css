@@ -1,6 +1,6 @@
-/* Catppuccin Theme Variables */
+/* theme vars */
 :root {
-    /* Latte */
+    /* latte */
     --l-rosewater: #dc8a78;
     --l-flamingo: #dd7878;
     --l-pink: #ea76cb;
@@ -28,7 +28,7 @@
     --l-mantle: #e6e9ef;
     --l-crust: #dce0e8;
 
-    /* Mocha */
+    /* mocha */
     --m-rosewater: #f5e0dc;
     --m-flamingo: #f2cdcd;
     --m-pink: #f5c2e7;
@@ -57,7 +57,7 @@
     --m-crust: #11111b;
 }
 
-/* Base Styles */
+/* core stuff */
 @font-face {
     font-family: 'Victor Mono Nerd Font';
     src: url('https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@master/patched-fonts/VictorMono/Regular/complete/Victor%20Mono%20Regular%20Nerd%20Font%20Complete.ttf') format('truetype');
@@ -81,6 +81,7 @@ body {
     padding: 0 1rem;
 }
 
+/* theme toggle */
 .theme-toggle {
     position: fixed;
     top: 1rem;
@@ -101,6 +102,7 @@ body {
     border-color: var(--m-surface1);
 }
 
+/* ascii stuff */
 .ascii-art {
     display: block;
     margin: 2rem auto;
@@ -118,6 +120,7 @@ body {
     color: var(--m-mauve);
 }
 
+/* layout */
 .about-section {
     border: 1px solid var(--l-surface0);
     padding: 1.5rem;
@@ -147,6 +150,7 @@ h1 {
     color: var(--m-blue);
 }
 
+/* skills */
 .skills {
     margin: 1rem 0;
 }
@@ -165,6 +169,7 @@ h1 {
     color: var(--m-lavender);
 }
 
+/* links and nav */
 a {
     color: var(--l-blue);
     text-decoration: none;
@@ -198,7 +203,7 @@ footer {
     color: var(--m-subtext0);
 }
 
-/* Book specific styles - add to end of s.css */
+/* books */
 .book {
     margin-bottom: 2rem;
 }
@@ -252,7 +257,6 @@ footer {
     margin: 0.5rem 0;
 }
 
-/* Makes links in book listings more subtle */
 .book a {
     color: var(--l-blue);
     text-decoration: none;
@@ -262,28 +266,17 @@ footer {
     color: var(--m-blue);
 }
 
-.visitor-count {
-    text-align: center;
-    margin-top: 1rem;
-    opacity: 0.7;
-}
-
-.visitor-count img {
-    filter: grayscale(100%);
-    transition: opacity 0.3s;
-}
-
-.visitor-count img:hover {
-    opacity: 0.9;
-}
-
-/* Art specific styles - add to end of s.css */
+/* art gallery */
 .art-list {
     margin-top: 1rem;
 }
 
 .art-item {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.art-item:last-child {
+    margin-bottom: 0;
 }
 
 .art-item h2 {
@@ -296,11 +289,18 @@ footer {
     color: var(--m-blue);
 }
 
-.art-item img {
-    max-width: 100%;
-    height: auto;
-    border: 1px solid var(--l-surface0);
+.thumbnail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
     margin: 1rem 0;
+}
+
+.art-item img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 1px solid var(--l-surface0);
     transition: border-color 0.3s;
 }
 
@@ -312,7 +312,6 @@ footer {
     margin: 0.5rem 0;
 }
 
-/* Makes links in art listings match existing style */
 .art-item a {
     color: var(--l-blue);
     text-decoration: none;
@@ -320,4 +319,69 @@ footer {
 
 .dark .art-item a {
     color: var(--m-blue);
+}
+
+/* image modal */
+.thumbnail {
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.thumbnail:hover {
+    opacity: 0.8;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90vh;
+}
+
+.modal-content img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: var(--l-text);
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dark .modal-close {
+    color: var(--m-text);
+}
+
+.modal-close:hover {
+    color: var(--l-red);
+}
+
+.dark .modal-close:hover {
+    color: var(--m-red);
 }
