@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>/etc/pixels</title>
+    <link rel="stylesheet" href="s.css">
+</head>
+<body class="dark">
+    <button onclick="document.documentElement.classList.toggle('dark'); document.body.classList.toggle('dark')" class="theme-toggle">toggle theme</button>
+
+    <nav>
+        <a href="index.html">home</a>
+        <a href="books.html">books</a>
+        <a href="art.html">art</a>
+        <a href="https://github.com/getjared">github</a>
+    </nav>
+
+    <main>
+        <div class="about-section">
+            <h1>lofi breeze</h1>
+            
+            <div class="art-list">
+                <div class="art-item">
+                    <h2>2d, sprites</h2>
+                    <p>
+                        a small lofi styled pack of assets (the game was going to be called breeze) it's setup as a side-adventure style game thing
+                    </p>
+                    <p>
+                        <a href="https://opengameart.org/content/lofi-breeze">view on opengameart</a> • <span class="wip">newest</span><br>
+                        <a href="https://gtijared.itch.io/lofi-breeze">view on itch</a> • <span class="wip">newest</span>
+                    </p>
+                    <img src="gameassets/other-m-4.gif" alt="breeeeze" />
+                </div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h1>ahkihabara</h1>
+            
+            <div class="art-list">
+                <div class="art-item">
+                    <h2>2d, sprites, tilesets</h2>
+                    <p>
+                        a decently large collection of sprites & tilesets from a project i was playing with years ago, i never put them to use, maybe someone else can!
+                    </p>
+                    <p>
+                        <a href="https://opengameart.org/content/anime-collection">view on opengameart</a> • <span class="wip">newest</span><br>
+                        <a href="https://gtijared.itch.io/anime-style-collection">view on itch</a> • <span class="wip">newest</span>
+                    </p>
+                    <img src="gameassets/mock-up-v8.png" alt="anime things" />
+                </div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h1>tools i use</h1>
+            <ul>
+                <li><a href="https://www.piskelapp.com/">piskel</a> - pixel art and animation</li>
+                <li><a href="https://krita.org/">krita</a> - digital painting</li>
+            </ul>
+        </div>
+
+        <footer>
+            built with html and css only. no bloat.
+        </footer>
+    </main>
+
+    <script>
+        document.querySelector('.theme-toggle').addEventListener('click', () => {
+            document.documentElement.classList.toggle('light');
+            document.body.classList.toggle('light');
+        });
+    </script>
+</body>
+</html>
