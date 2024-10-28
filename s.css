@@ -261,18 +261,3 @@ footer {
 .dark .book a {
     color: var(--m-blue);
 }
-
-.visitor-count {
-    text-align: center;
-    margin-top: 1rem;
-    opacity: 0.7;
-}
-
-.visitor-count img {
-    filter: grayscale(100%);
-    transition: opacity 0.3s;
-}
-
-.visitor-count img:hover {
-    opacity: 0.9;
-}
