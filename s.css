@@ -261,3 +261,63 @@ footer {
 .dark .book a {
     color: var(--m-blue);
 }
+
+.visitor-count {
+    text-align: center;
+    margin-top: 1rem;
+    opacity: 0.7;
+}
+
+.visitor-count img {
+    filter: grayscale(100%);
+    transition: opacity 0.3s;
+}
+
+.visitor-count img:hover {
+    opacity: 0.9;
+}
+
+/* Art specific styles - add to end of s.css */
+.art-list {
+    margin-top: 1rem;
+}
+
+.art-item {
+    margin-bottom: 2rem;
+}
+
+.art-item h2 {
+    color: var(--l-blue);
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+}
+
+.dark .art-item h2 {
+    color: var(--m-blue);
+}
+
+.art-item img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--l-surface0);
+    margin: 1rem 0;
+    transition: border-color 0.3s;
+}
+
+.dark .art-item img {
+    border-color: var(--m-surface0);
+}
+
+.art-item p {
+    margin: 0.5rem 0;
+}
+
+/* Makes links in art listings match existing style */
+.art-item a {
+    color: var(--l-blue);
+    text-decoration: none;
+}
+
+.dark .art-item a {
+    color: var(--m-blue);
+}
