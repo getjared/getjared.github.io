@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>/home/jared/projects</title>
+    <link rel="stylesheet" href="s.css">
+</head>
+<body class="dark">
+    <button onclick="document.documentElement.classList.toggle('dark'); document.body.classList.toggle('dark')" class="theme-toggle">toggle theme</button>
+
+    <nav>
+        <a href="index.html">home</a>
+        <a href="books.html">books</a>
+        <a href="art.html">art</a>
+        <a href="progs.html">projects</a>
+        <a href="https://github.com/getjared">github</a>
+    </nav>
+
+    <main>
+        <div class="about-section">
+            <h1>projects</h1>
+            <div class="project-list">
+                <div class="project-item">
+                    <span class="project-name">[rude]</span>
+                    <span class="project-lang">c</span>
+                    <p>minimal floating x window manager</p>
+                    <div class="project-links">
+                        <a href="https://raw.githubusercontent.com/getjared/rude/refs/heads/main/rude.c">src</a> • 
+                        <a href="https://raw.githubusercontent.com/getjared/rude/refs/heads/main/readme">readme</a> • 
+                        <span class="wip">active</span>
+                    </div>
+                </div>
+
+                <div class="project-item collapsed">
+                    <span class="project-name">[muse]</span>
+                    <span class="project-lang">c</span>
+                    <p>cli based image color manipulator</p>
+                    <div class="project-links">
+                        <a href="https://raw.githubusercontent.com/getjared/muse/refs/heads/main/muse.c">src</a> • 
+                        <a href="https://raw.githubusercontent.com/getjared/muse/refs/heads/main/readme">readme</a> •
+                        <span class="wip">active</span>
+                    </div>
+                </div>
+
+                <div class="project-item collapsed">
+                    <span class="project-name">[lube]</span>
+                    <span class="project-lang">c</span>
+                    <p>motion amplification on still images</p>
+                    <div class="project-links">
+                        <a href="https://raw.githubusercontent.com/getjared/lube/refs/heads/main/lube.c">src</a> • 
+                        <a href="https://raw.githubusercontent.com/getjared/lube/refs/heads/main/readme">readme</a> • 
+                        <span class="wip">not interested</span>
+                    </div>
+                </div>
+
+                <div class="project-item collapsed">
+                    <span class="project-name">[cimg]</span>
+                    <span class="project-lang">c</span>
+                    <p>embed & extract files into & from images</p>
+                    <div class="project-links">
+                        <a href="https://github.com/getjared/cimg">src</a> • 
+                        <a href="https://raw.githubusercontent.com/getjared/cimg/refs/heads/main/readme">readme</a> • 
+                        <span class="wip">archived</span>
+                    </div>
+                </div>
+
+                <div class="project-item collapsed">
+                    <span class="project-name">[scylla]</span>
+                    <span class="project-lang">c</span>
+                    <p>simple chatgpt-cli</p>
+                    <div class="project-links">
+                        <a href="https://raw.githubusercontent.com/getjared/scylla/refs/heads/main/scylla.c">src</a> • 
+                        <a href="https://raw.githubusercontent.com/getjared/scylla/refs/heads/main/readme">readme</a> • 
+                        <span class="wip">archived</span>
+                    </div>
+                </div>
+
+                <div class="project-item collapsed">
+                    <span class="project-name">[gifw]</span>
+                    <span class="project-lang">c</span>
+                    <p>x11 animated wallpaper setter</p>
+                    <div class="project-links">
+                        <a href="hhttps://raw.githubusercontent.com/getjared/gifw/refs/heads/main/gifw.c">src</a> • 
+                        <a href="https://raw.githubusercontent.com/getjared/gifw/refs/heads/main/readme">readme</a> • 
+                        <span class="wip">active</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>built with html and css only. no bloat.</footer>
+    <script>
+        // project collapse toggle
+        document.querySelectorAll('.project-name').forEach(name => {
+            name.addEventListener('click', () => {
+                const item = name.closest('.project-item');
+                item.classList.toggle('collapsed');
+            });
+        });
+    </script>
+</body>
+</html>
