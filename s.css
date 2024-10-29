@@ -385,3 +385,79 @@ footer {
 .dark .modal-close:hover {
     color: var(--m-red);
 }
+
+/* projects */
+.project-list {
+    font-family: 'Victor Mono Nerd Font', monospace;
+}
+
+.project-item {
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.project-item:last-child {
+    margin-bottom: 0;
+}
+
+.project-name {
+    position: relative;
+    padding-left: 1rem;  /* make room for the indicator */
+}
+
+.project-name::before {
+    content: "-";
+    position: absolute;
+    left: -0.5rem;
+    color: var(--l-subtext0);
+    transition: all 0.3s ease;
+}
+
+.dark .project-name::before {
+    color: var(--m-subtext0);
+}
+
+.collapsed .project-name::before {
+    content: "+";
+}
+
+.dark .project-name {
+    color: var(--m-mauve);
+}
+
+.project-lang {
+    color: var(--l-peach);
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+}
+
+.dark .project-lang {
+    color: var(--m-peach);
+}
+
+.project-item p {
+    margin: 0.5rem 0;
+    transition: all 0.3s ease;
+}
+
+.project-links {
+    font-size: 0.9rem;
+}
+
+/* collapse animation */
+.project-item.collapsed p,
+.project-item.collapsed .project-links {
+    height: 0;
+    margin: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+/* hover effect */
+.project-name:hover {
+    color: var(--l-blue);
+}
+
+.dark .project-name:hover {
+    color: var(--m-blue);
+}
