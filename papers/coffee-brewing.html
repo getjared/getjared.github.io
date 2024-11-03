@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>coffee brewing guide</title>
+    <link rel="stylesheet" href="../s.css">
+    <style>
+        /* Paper-specific styles */
+        .paper-content {
+            max-width: 540px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .paper-meta {
+            text-align: center;
+            color: var(--subtext);
+            font-size: 0.8rem;
+            margin: 2rem 0;
+            letter-spacing: 0.1em;
+        }
+
+        .paper-section {
+            margin: 3rem 0;
+        }
+
+        .paper-section h2 {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .recipe {
+            background: var(--lavender);
+            padding: 1.2rem;
+            border-radius: 2px;
+            margin: 1.5rem 0;
+        }
+
+        .recipe-title {
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .recipe-meta {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+        }
+
+        .recipe-meta-item {
+            background: rgba(92, 95, 119, 0.05);
+            padding: 0.5rem;
+            border-radius: 2px;
+            text-align: center;
+        }
+
+        .recipe-steps {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .recipe-steps li {
+            margin: 0.8rem 0;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .recipe-steps li::before {
+            content: "―";
+            position: absolute;
+            left: 0;
+            color: var(--subtext);
+        }
+
+        .note {
+            background: var(--sapphire);
+            padding: 1rem;
+            border-radius: 2px;
+            font-size: 0.85rem;
+            margin: 1.5rem 0;
+            line-height: 1.6;
+        }
+
+        blockquote {
+            margin: 2rem 0;
+            padding-left: 1rem;
+            border-left: 1px solid var(--surface);
+            font-style: italic;
+            color: var(--subtext);
+        }
+
+        @media (max-width: 600px) {
+            .recipe-meta {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="navbar"></div>
+
+        <div class="paper-content">
+            <h1>coffee brewing guide</h1>
+            
+            <div class="paper-meta">
+                published: 2024 ― last updated: 2024
+            </div>
+
+            <div class="paper-section">
+                <p>coffee is both an art and a science. this guide explores various brewing methods, focusing on precision, technique, and the subtle nuances that make each cup unique.</p>
+                
+                <blockquote>
+                    the quality of your coffee is determined by your attention to detail and patience in the process.
+                </blockquote>
+            </div>
+
+            <div class="paper-section">
+                <h2>v60 pour-over</h2>
+                <div class="recipe">
+                    <div class="recipe-title">basic recipe</div>
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item">22g coffee</div>
+                        <div class="recipe-meta-item">350g water</div>
+                        <div class="recipe-meta-item">94°c temp</div>
+                    </div>
+                    <ul class="recipe-steps">
+                        <li>rinse filter and warm vessel</li>
+                        <li>grind coffee medium-fine</li>
+                        <li>45g bloom for 30 seconds</li>
+                        <li>spiral pour to 150g by 1:00</li>
+                        <li>spiral pour to 250g by 1:30</li>
+                        <li>center pour to 350g by 2:00</li>
+                        <li>drawdown should complete by 3:00</li>
+                    </ul>
+                </div>
+
+                <div class="note">
+                    key point: consistency in pour technique is crucial. maintain a steady flow rate and spiral pattern for even extraction.
+                </div>
+            </div>
+
+            <div class="paper-section">
+                <h2>aeropress</h2>
+                <div class="recipe">
+                    <div class="recipe-title">inverted method</div>
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item">15g coffee</div>
+                        <div class="recipe-meta-item">250g water</div>
+                        <div class="recipe-meta-item">92°c temp</div>
+                    </div>
+                    <ul class="recipe-steps">
+                        <li>grind coffee medium-fine</li>
+                        <li>add coffee to inverted aeropress</li>
+                        <li>add 250g water</li>
+                        <li>stir gently 3 times</li>
+                        <li>steep for 2 minutes</li>
+                        <li>attach filter, flip, press</li>
+                        <li>press should take 30 seconds</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="paper-section">
+                <h2>general principles</h2>
+                <p>regardless of method, these factors are crucial:</p>
+                <ul class="recipe-steps">
+                    <li>use freshly roasted beans (within 2-4 weeks)</li>
+                    <li>grind immediately before brewing</li>
+                    <li>use filtered water at proper temperature</li>
+                    <li>maintain consistent ratios</li>
+                    <li>time your extractions</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="footer"></div>
+    </div>
+    <script src="../components.js"></script>
+</body>
+</html>
