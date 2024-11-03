@@ -102,7 +102,76 @@
                 gap: 0.5rem;
             }
         }
+
+        .region-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .region-card {
+            background: var(--lavender);
+            padding: 1rem;
+            border-radius: 2px;
+        }
+
+        .region-card:nth-child(2) {
+            background: var(--sapphire);
+        }
+
+        .region-card:nth-child(3) {
+            background: var(--mauve);
+        }
+
+        .region-card:nth-child(4) {
+            background: var(--peach);
+        }
+
+        .region-name {
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .region-details {
+            font-size: 0.8rem;
+            color: var(--subtext);
+        }
+
+        .region-meta {
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(92, 95, 119, 0.1);
+            font-size: 0.8rem;
+        }
+
+        /* flavor profile styles */
+        .flavor-profile {
+            background: var(--lavender);
+            padding: 1rem;
+            border-radius: 2px;
+            margin: 1rem 0;
+        }
+
+        .flavor-category {
+            margin: 0.8rem 0;
+            font-size: 0.85rem;
+        }
+
+        .flavor-title {
+            color: var(--subtext);
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        @media (max-width: 600px) {
+            .region-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
+
 </head>
 <body>
     <div class="container">
@@ -119,16 +188,50 @@
                 <p>coffee is both an art and a science. this guide explores various brewing methods, focusing on precision, technique, and the subtle nuances that make each cup unique.</p>
                 
                 <blockquote>
-                    the quality of your coffee is determined by your attention to detail and patience in the process.
+                    ethiopia is the birthplace of coffee, and its diverse regions each tell a unique story through their distinct flavor profiles.
                 </blockquote>
             </div>
 
             <div class="paper-section">
-                <h2>ethiopian coffee ritual</h2>
-                <p>ethiopian beans, particularly from the yirgacheffe region, offer a delicate floral and citrus profile that requires specific attention to detail.</p>
+                <h2>ethiopian growing regions</h2>
+                <p>each region's unique microclimate and processing tradition contributes to distinct flavor profiles.</p>
+                
+                <div class="region-grid">
+                    <div class="region-card">
+                        <div class="region-name">yirgacheffe</div>
+                        <div class="region-details">high-altitude arabica known for bright, floral notes and citrus undertones.</div>
+                        <div class="region-meta">altitude: 1,750-2,200m ― process: washed</div>
+                    </div>
+
+                    <div class="region-card">
+                        <div class="region-name">sidamo</div>
+                        <div class="region-details">complex, wine-like body with blueberry and dark chocolate notes.</div>
+                        <div class="region-meta">altitude: 1,550-2,200m ― process: natural</div>
+                    </div>
+
+                    <div class="region-card">
+                        <div class="region-name">guji</div>
+                        <div class="region-details">bright acidity with jasmine, bergamot, and peach notes.</div>
+                        <div class="region-meta">altitude: 1,900-2,300m ― process: both</div>
+                    </div>
+
+                    <div class="region-card">
+                        <div class="region-name">jimma</div>
+                        <div class="region-details">earthy profile with spice notes and full body.</div>
+                        <div class="region-meta">altitude: 1,400-2,100m ― process: natural</div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    each region's beans require slightly different brewing parameters to highlight their unique characteristics.
+                </div>
+            </div>
+
+            <div class="paper-section">
+                <h2>brewing variations</h2>
 
                 <div class="recipe">
-                    <div class="recipe-title">yirgacheffe light roast</div>
+                    <div class="recipe-title">yirgacheffe light roast - pour over</div>
                     <div class="recipe-meta">
                         <div class="recipe-meta-item">20g coffee</div>
                         <div class="recipe-meta-item">300g water</div>
@@ -145,18 +248,87 @@
                     </ul>
                 </div>
 
-                <div class="note">
-                    ethiopian beans shine with lighter roasts and slower pour rates. the extended bloom time helps highlight the delicate floral notes.
+                <div class="recipe">
+                    <div class="recipe-title">sidamo natural - immersion</div>
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item">25g coffee</div>
+                        <div class="recipe-meta-item">400g water</div>
+                        <div class="recipe-meta-item">91°c temp</div>
+                    </div>
+                    <ul class="recipe-steps">
+                        <li>coarse grind (french press setting)</li>
+                        <li>add coffee to french press</li>
+                        <li>pour water in circular motion</li>
+                        <li>light stir to ensure saturation</li>
+                        <li>steep for 4 minutes</li>
+                        <li>break crust and skim</li>
+                        <li>press slowly and decant fully</li>
+                    </ul>
                 </div>
 
-                <p>bean characteristics to look for:</p>
-                <ul class="recipe-steps">
-                    <li>light to medium roast only</li>
-                    <li>harvest date within last 6 months</li>
-                    <li>natural process preferred</li>
-                    <li>store in dark, cool place</li>
-                    <li>rest beans 7-14 days post-roast</li>
-                </ul>
+                <div class="recipe">
+                    <div class="recipe-title">guji natural - hybrid method</div>
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item">18g coffee</div>
+                        <div class="recipe-meta-item">250g water</div>
+                        <div class="recipe-meta-item">94°c temp</div>
+                    </div>
+                    <ul class="recipe-steps">
+                        <li>medium-fine grind</li>
+                        <li>rinse filter thoroughly</li>
+                        <li>50g bloom for 30 seconds</li>
+                        <li>stir bloom gently</li>
+                        <li>pour to 150g, wait 30 seconds</li>
+                        <li>final pour to 250g</li>
+                        <li>swirl gently at end</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="paper-section">
+                <h2>detailed tasting notes</h2>
+                
+                <div class="flavor-profile">
+                    <div class="flavor-category">
+                        <div class="flavor-title">aromatics</div>
+                        - jasmine and orange blossom (yirgacheffe)
+                        - blueberry and cocoa (sidamo)
+                        - bergamot and peach (guji)
+                        - earthy and spiced (jimma)
+                    </div>
+
+                    <div class="flavor-category">
+                        <div class="flavor-title">acidity</div>
+                        - bright citrus, meyer lemon (yirgacheffe)
+                        - wine-like, complex (sidamo)
+                        - crisp stone fruit (guji)
+                        - mild, rounded (jimma)
+                    </div>
+
+                    <div class="flavor-category">
+                        <div class="flavor-title">sweetness</div>
+                        - honey, floral (yirgacheffe)
+                        - berry, dark chocolate (sidamo)
+                        - stone fruit, caramel (guji)
+                        - brown sugar, molasses (jimma)
+                    </div>
+
+                    <div class="flavor-category">
+                        <div class="flavor-title">body</div>
+                        - tea-like, silky (yirgacheffe)
+                        - full, wine-like (sidamo)
+                        - medium, juicy (guji)
+                        - full, syrupy (jimma)
+                    </div>
+
+                    <div class="flavor-category">
+                        <div class="flavor-title">finish</div>
+                        - black tea, clean (yirgacheffe)
+                        - lingering fruit (sidamo)
+                        - sweet, bright (guji)
+                        - spice, lasting (jimma)
+                    </div>
+                </div>
             </div>
 
             <div class="paper-section">
