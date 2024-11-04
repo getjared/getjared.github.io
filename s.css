@@ -266,6 +266,30 @@ footer {
     background: var(--sapphire);
 }
 
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-link {
+    color: var(--text);
+    text-decoration: none;
+    padding: 0.3rem;
+    line-height: 0;
+    border-radius: 2px;
+}
+
+.footer-link:hover {
+    background: var(--sapphire);
+}
+
+.footer-separator {
+    color: var(--subtext);
+    font-size: 0.8rem;
+}
+
 .divider {
     text-align: center;
     margin: 0.2rem 0;
