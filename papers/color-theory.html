@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>color theory and spaces</title>
+    <link rel="stylesheet" href="../s.css">
+    <style>
+        .formula {
+            background: var(--lavender);
+            padding: 1.2rem;
+            border-radius: 2px;
+            margin: 1.5rem 0;
+            font-family: monospace;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .code {
+            background: var(--sapphire);
+            padding: 1.2rem;
+            border-radius: 2px;
+            margin: 1rem 0;
+            font-family: monospace;
+            font-size: 0.85rem;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        .concept {
+            background: var(--peach);
+            padding: 1.2rem;
+            border-radius: 2px;
+            margin: 1rem 0;
+        }
+
+        .deep-dive {
+            background: var(--mauve);
+            padding: 1.2rem;
+            border-radius: 2px;
+            margin: 1rem 0;
+        }
+
+        .implementation {
+            background: var(--surface);
+            padding: 1.2rem;
+            border-radius: 2px;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="navbar"></div>
+
+        <div class="paper-content">
+            <h1>color theory and spaces</h1>
+            
+            <div class="paper-meta">
+                published: 2024 ― last updated: 2024
+            </div>
+
+            <div class="paper-section">
+                <h2>foundations of color perception</h2>
+                
+                <div class="concept">
+                    <p>the human visual system processes light through three distinct types of cone cells in the retina. this trichromatic nature forms the basis for most color representation systems in computing:</p>
+
+                    <ul>
+                        <li>L-cones (64% of cones):
+                            <br>- peak sensitivity at 560nm (red-yellow)
+                            <br>- broadest response curve
+                            <br>- primary contributor to luminance perception
+                        </li>
+                        <li>M-cones (32% of cones):
+                            <br>- peak sensitivity at 530nm (green)
+                            <br>- significant overlap with L-cones
+                            <br>- key role in red-green discrimination
+                        </li>
+                        <li>S-cones (4% of cones):
+                            <br>- peak sensitivity at 420nm (blue-violet)
+                            <br>- most sensitive but least numerous
+                            <br>- minimal contribution to luminance
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="deep-dive">
+                    <h3>luminance perception</h3>
+                    <p>the human eye is most sensitive to green light, followed by red, and least sensitive to blue. this is reflected in the standard luminance formula:</p>
+
+                    <div class="formula">
+Y = 0.2126R + 0.7152G + 0.0722B  // BT.709
+Y = 0.2627R + 0.6780G + 0.0593B  // BT.2020</div>
+
+                    <p>these coefficients aren't arbitrary - they're derived from human perception research and have important implications:</p>
+                    
+                    <ul>
+                        <li>text legibility: use luminance contrast rather than pure color contrast</li>
+                        <li>image compression: more bits can be allocated to green channel</li>
+                        <li>color quantization: green errors are more noticeable</li>
+                        <li>dithering: patterns should consider luminance sensitivity</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="paper-section">
+                <h2>color space mathematics</h2>
+
+                <div class="deep-dive">
+                    <h3>rgb color space</h3>
+                    <p>rgb is an additive color model based on the trichromatic nature of human vision. while simple to understand, it has several important characteristics:</p>
+
+                    <div class="code">
+struct RGB {
+    uint8_t r;  // red   [0-255]
+    uint8_t g;  // green [0-255]
+    uint8_t b;  // blue  [0-255]
+};</div>
+
+                    <p>key properties:</p>
+                    <ul>
+                        <li>cube shaped color space
+                            <br>- each axis represents one primary color
+                            <br>- diagonal from (0,0,0) to (255,255,255) represents grayscale
+                            <br>- distance in rgb space doesn't match perceptual difference
+                        </li>
+                        <li>device dependent
+                            <br>- same rgb values may appear different on different displays
+                            <br>- requires color management for consistency
+                            <br>- typically assumes srgb color space
+                        </li>
+                        <li>non-linear encoding
+                            <br>- values are gamma encoded (not linear light)
+                            <br>- direct mathematical operations can give unexpected results
+                            <br>- should convert to linear space for accurate calculations
+                        </li>
+                    </ul>
+
+                    <div class="implementation">
+                        <p>practical implementation considerations:</p>
+                        <div class="code">
+// memory efficient packing
+typedef uint32_t RGB;  // 0xRRGGBB format
+
+// component extraction
+#define R(rgb) ((rgb >> 16) & 0xFF)
+#define G(rgb) ((rgb >> 8) & 0xFF)
+#define B(rgb) (rgb & 0xFF)
+
+// component combination
+#define RGB(r,g,b) ((r << 16) | (g << 8) | b)
+
+// simd-friendly structure
+struct RGB_SIMD {
+    uint8_t r[4];  // aligned for 4-wide simd
+    uint8_t g[4];
+    uint8_t b[4];
+};</div>
+                    </div>
+                </div>
+
+                <div class="deep-dive">
+                    <h3>hsv/hsl color spaces</h3>
+                    <p>these cylindrical color spaces are transformations of rgb that better match human thinking about color:</p>
+
+                    <div class="code">
+struct HSV {
+    float h;  // hue        [0-360°]
+    float s;  // saturation [0-1]
+    float v;  // value      [0-1]
+};
+
+struct HSL {
+    float h;  // hue        [0-360°]
+    float s;  // saturation [0-1]
+    float l;  // lightness  [0-1]
+};</div>
+
+                    <p>key differences:</p>
+                    <ul>
+                        <li>hsv (hue-saturation-value)
+                            <br>- designed for computer graphics
+                            <br>- v=1 gives pure colors
+                            <br>- better for color selection interfaces
+                        </li>
+                        <li>hsl (hue-saturation-lightness)
+                            <br>- more perceptually uniform
+                            <br>- l=0.5 gives pure colors
+                            <br>- better for color manipulation
+                        </li>
+                    </ul>
+
+                    <div class="implementation">
+                        <p>efficient conversion implementation:</p>
+                        <div class="code">
+// rgb to hsv conversion optimized for speed
+HSV rgb_to_hsv_fast(RGB rgb) {
+    uint8_t max = MAX3(rgb.r, rgb.g, rgb.b);
+    uint8_t min = MIN3(rgb.r, rgb.g, rgb.b);
+    uint8_t delta = max - min;
+    
+    HSV result;
+    result.v = max / 255.0f;
+    
+    if (delta == 0) {
+        result.h = 0;
+        result.s = 0;
+        return result;
+    }
+    
+    result.s = delta / (float)max;
+    
+    // use lookup table for division
+    float delta_r = ((max - rgb.r) * LUT_6[delta]) / 6.0f;
+    float delta_g = ((max - rgb.g) * LUT_6[delta]) / 6.0f;
+    float delta_b = ((max - rgb.b) * LUT_6[delta]) / 6.0f;
+    
+    if (rgb.r == max)
+        result.h = delta_b - delta_g;
+    else if (rgb.g == max)
+        result.h = 1.0f/3.0f + delta_r - delta_b;
+    else // rgb.b == max
+        result.h = 2.0f/3.0f + delta_g - delta_r;
+    
+    if (result.h < 0) result.h += 1;
+    result.h *= 360;
+    
+    return result;
+}</div>
+                    </div>
+                </div>
+
+<div class="deep-dive">
+                    <h3>lab color space</h3>
+                    <p>lab (CIELAB) is a perceptually uniform color space designed to approximate human vision:</p>
+
+                    <div class="code">
+struct Lab {
+    float L;  // lightness   [0-100]
+    float a;  // green-red   [-128-127]
+    float b;  // blue-yellow [-128-127]
+};</div>
+
+                    <p>key characteristics:</p>
+                    <ul>
+                        <li>perceptual uniformity
+                            <br>- equal distances ≈ equal perceived differences
+                            <br>- independent of device characteristics
+                            <br>- based on opponent color theory
+                        </li>
+                        <li>transformation process
+                            <br>- rgb → xyz → lab (two-step conversion)
+                            <br>- requires white point reference
+                            <br>- non-linear compression of xyz values
+                        </li>
+                    </ul>
+
+                    <div class="implementation">
+                        <p>complete conversion pipeline:</p>
+                        <div class="code">
+// convert srgb to xyz
+void rgb_to_xyz(float r, float g, float b, 
+                float *x, float *y, float *z) {
+    // first, linearize srgb values
+    r = gamma_decode(r);
+    g = gamma_decode(g);
+    b = gamma_decode(b);
+    
+    // apply transformation matrix
+    *x = 0.4124564f * r + 0.3575761f * g + 0.1804375f * b;
+    *y = 0.2126729f * r + 0.7151522f * g + 0.0721750f * b;
+    *z = 0.0193339f * r + 0.1191920f * g + 0.9503041f * b;
+}
+
+// convert xyz to lab
+void xyz_to_lab(float x, float y, float z,
+                float *L, float *a, float *b) {
+    // use D65 white point
+    x /= 0.95047f;
+    y /= 1.00000f;
+    z /= 1.08883f;
+    
+    // apply non-linear compression
+    x = compress_xyz(x);
+    y = compress_xyz(y);
+    z = compress_xyz(z);
+    
+    // calculate lab values
+    *L = 116.0f * y - 16.0f;
+    *a = 500.0f * (x - y);
+    *b = 200.0f * (y - z);
+}
+
+// helper function for xyz compression
+float compress_xyz(float t) {
+    return t > 0.008856f ? 
+           cbrtf(t) : 
+           (7.787f * t + 16.0f/116.0f);
+}</div>
+                    </div>
+                </div>
+
+                <div class="deep-dive">
+                    <h3>color difference calculation</h3>
+                    <p>calculating perceptual color difference is crucial for many applications. the CIEDE2000 formula is the current standard:</p>
+
+                    <div class="code">
+struct DeltaE {
+    float deltaL;     // lightness difference
+    float deltaC;     // chroma difference
+    float deltaH;     // hue difference
+    float deltaE;     // total difference
+};
+
+// calculate CIEDE2000 color difference
+DeltaE compute_delta_e(Lab lab1, Lab lab2) {
+    // convert to LCh space first
+    float C1 = sqrt(lab1.a * lab1.a + lab1.b * lab1.b);
+    float C2 = sqrt(lab2.a * lab2.a + lab2.b * lab2.b);
+    float Cmean = (C1 + C2) / 2.0f;
+    
+    // calculate hue angles
+    float h1 = atan2(lab1.b, lab1.a);
+    float h2 = atan2(lab2.b, lab2.a);
+    
+    // apply weighing factors
+    float Sl = 1.0f;  // lightness weight
+    float Sc = 1.0f + 0.045f * Cmean;  // chroma weight
+    float Sh = 1.0f + 0.015f * Cmean;  // hue weight
+    
+    // calculate components
+    DeltaE result;
+    result.deltaL = (lab2.L - lab1.L) / Sl;
+    result.deltaC = (C2 - C1) / Sc;
+    result.deltaH = 2.0f * sqrt(C1 * C2) * 
+                   sin((h2 - h1) / 2.0f) / Sh;
+    
+    // calculate total difference
+    result.deltaE = sqrt(
+        result.deltaL * result.deltaL +
+        result.deltaC * result.deltaC +
+        result.deltaH * result.deltaH
+    );
+    
+    return result;
+}</div>
+
+                    <div class="concept">
+                        <p>practical thresholds for deltaE:</p>
+                        <ul>
+                            <li>< 1.0: not perceptible by human eyes</li>
+                            <li>1-2: perceptible through close observation</li>
+                            <li>2-10: perceptible at a glance</li>
+                            <li>11-49: colors are more similar than opposite</li>
+                            <li>100: colors are exact opposites</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="deep-dive">
+                    <h3>real-time optimization techniques</h3>
+                    
+                    <div class="concept">
+                        <p>for performance-critical applications, several optimization strategies can be employed:</p>
+
+                        <div class="code">
+// 1. pre-computed lookup tables
+struct ColorTables {
+    uint8_t gamma[256];     // gamma correction
+    uint8_t inv_gamma[256]; // inverse gamma
+    float sin_table[360];   // sine values for hue
+    float sqrt_table[256];  // square roots
+} tables;
+
+// 2. fixed-point arithmetic
+#define FP_BITS 8
+#define FP_SCALE (1 << FP_BITS)
+#define FP_MASK (FP_SCALE - 1)
+
+typedef int32_t fixed_t;
+
+fixed_t float_to_fixed(float f) {
+    return (fixed_t)(f * FP_SCALE);
+}
+
+float fixed_to_float(fixed_t f) {
+    return (float)f / FP_SCALE;
+}
+
+// 3. simd operations for batch processing
+void convert_rgb_to_hsv_simd(
+    const uint8_t *rgb,  // interleaved rgb
+    float *hsv,         // interleaved hsv
+    int pixel_count
+) {
+    // process 4 pixels at once using SSE
+    for (int i = 0; i < pixel_count; i += 4) {
+        // load 4 pixels
+        __m128i rgb_vec = _mm_loadu_si128(
+            (__m128i*)(rgb + i * 3)
+        );
+        
+        // unpack to 4 separate rgb vectors
+        __m128 r = _mm_cvtepi32_ps(_mm_srli_epi32(
+            rgb_vec, 16
+        ));
+        __m128 g = _mm_cvtepi32_ps(_mm_srli_epi32(
+            _mm_slli_epi32(rgb_vec, 16), 24
+        ));
+        __m128 b = _mm_cvtepi32_ps(_mm_and_si128(
+            rgb_vec, _mm_set1_epi32(0xFF)
+        ));
+        
+        // convert to hsv using simd
+        // store results
+        _mm_storeu_ps(hsv + i * 3, h);
+        _mm_storeu_ps(hsv + i * 3 + 4, s);
+        _mm_storeu_ps(hsv + i * 3 + 8, v);
+    }
+}</div>
+                    </div>
+
+                    <div class="concept">
+                        <p>memory layout optimization:</p>
+                        <ul>
+                            <li>interleaved vs planar storage
+                                <br>- interleaved: RGBRGBRGB (better for single pixel access)
+                                <br>- planar: RRR...GGG...BBB (better for batch processing)
+                            </li>
+                            <li>alignment considerations
+                                <br>- align data to 16/32 byte boundaries for simd
+                                <br>- pad rows to multiple of vector size
+                            </li>
+                            <li>cache efficiency
+                                <br>- process in cache-friendly chunks
+                                <br>- minimize strided access
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="paper-section">
+                    <h2>practical applications</h2>
+
+                    <div class="deep-dive">
+                        <h3>color quantization and dithering</h3>
+                        <p>efficient implementation for palette reduction:</p>
+                        
+                        <div class="code">
+// color space partitioning for fast matching
+struct ColorCube {
+    uint32_t idx_bits[8];   // bit indices for cube
+    uint8_t *color_map;     // mapped colors
+    int resolution;         // cube resolution
+};
+
+// initialize color cube for fast lookup
+ColorCube *create_color_cube(
+    const RGB *palette,
+    int palette_size,
+    int resolution
+) {
+    ColorCube *cube = malloc(sizeof(ColorCube));
+    cube->resolution = resolution;
+    
+    // calculate cube size
+    int cube_size = resolution * resolution * resolution;
+    cube->color_map = malloc(cube_size);
+    
+    // populate cube
+    for (int r = 0; r < resolution; r++) {
+        for (int g = 0; g < resolution; g++) {
+            for (int b = 0; b < resolution; b++) {
+                RGB color = {
+                    (r * 255) / (resolution - 1),
+                    (g * 255) / (resolution - 1),
+                    (b * 255) / (resolution - 1)
+                };
+                
+                // find closest palette color
+                int best_idx = 0;
+                int best_dist = INT_MAX;
+                
+                for (int i = 0; i < palette_size; i++) {
+                    int dist = color_distance(
+                        color, palette[i]
+                    );
+                    if (dist < best_dist) {
+                        best_dist = dist;
+                        best_idx = i;
+                    }
+                }
+                
+                int cube_idx = (r * resolution + g) 
+                              * resolution + b;
+                cube->color_map[cube_idx] = best_idx;
+            }
+        }
+    }
+    
+    return cube;
+}</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="footer"></div>
+    </div>
+    <script src="../components.js"></script>
+</body>
+</html>
